@@ -36,6 +36,14 @@ public class Boat {
     public Boat() {
     }
 
+    public Boat(String make, String model, String name, Habour habour, List<Owner> owners) {
+        this.make = make;
+        this.model = model;
+        this.name = name;
+        this.habour = habour;
+        this.owners = owners;
+    }
+
     public Integer getId() {
         return id;
     }

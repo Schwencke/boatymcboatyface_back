@@ -26,6 +26,12 @@ public class Habour {
     public Habour() {
     }
 
+    public Habour(String name, String address, int capacity) {
+        this.name = name;
+        this.address = address;
+        this.capacity = capacity;
+    }
+
     public Integer getId() {
         return id;
     }
