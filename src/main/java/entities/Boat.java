@@ -2,12 +2,15 @@ package entities;
 
 import javax.persistence.*;
 import javax.validation.constraints.Size;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Table(name = "boat")
 @Entity
 public class Boat {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -24,7 +27,21 @@ public class Boat {
     @Size()
     private String image;
 
+    @ManyToMany
+    private List<Owner> owners;
+
+    @ManyToOne
+    Habour habour;
+
     public Boat() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getMake() {
@@ -59,11 +76,19 @@ public class Boat {
         this.image = image;
     }
 
-    public Integer getId() {
-        return id;
+    public List<Owner> getOwners() {
+        return owners;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setOwners(List<Owner> owners) {
+        this.owners = owners;
+    }
+
+    public Habour getHabour() {
+        return habour;
+    }
+
+    public void setHabour(Habour habour) {
+        this.habour = habour;
     }
 }

@@ -1,12 +1,13 @@
 package entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Table(name = "habour")
 @Entity
 public class Habour {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -19,7 +20,18 @@ public class Habour {
     @Column(name = "capacity", nullable = false)
     private int capacity;
 
+    @OneToMany(mappedBy = "habour", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Boat> boats;
+
     public Habour() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -46,11 +58,11 @@ public class Habour {
         this.capacity = capacity;
     }
 
-    public Integer getId() {
-        return id;
+    public List<Boat> getBoats() {
+        return boats;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setBoats(List<Boat> boats) {
+        this.boats = boats;
     }
 }

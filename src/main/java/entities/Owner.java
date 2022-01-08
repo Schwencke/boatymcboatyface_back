@@ -1,12 +1,15 @@
 package entities;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Table(name = "owner")
 @Entity
 public class Owner {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Integer id;
 
@@ -19,7 +22,18 @@ public class Owner {
     @Column(name = "phone", nullable = false)
     private String phone;
 
+    @ManyToMany(mappedBy = "owners", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    private List<Boat> boats;
+
     public Owner() {
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -46,11 +60,11 @@ public class Owner {
         this.phone = phone;
     }
 
-    public Integer getId() {
-        return id;
+    public List<Boat> getBoats() {
+        return boats;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setBoats(List<Boat> boats) {
+        this.boats = boats;
     }
 }
