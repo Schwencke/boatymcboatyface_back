@@ -11,7 +11,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("Owner")
+@Path("owner")
 public class OwnerRessource {
 
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
@@ -22,7 +22,7 @@ public class OwnerRessource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllOwners(){
 
-        return Response.ok().build();
+        return Response.ok().entity((FACADE.getAllOwners())).build();
     }
 
     @GET
@@ -30,7 +30,7 @@ public class OwnerRessource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getOwnerOnId(@PathParam("id") Integer id){
 
-        return Response.ok().build();
+        return Response.ok().entity(FACADE.getOwnerById(id)).build();
     }
 
     @POST

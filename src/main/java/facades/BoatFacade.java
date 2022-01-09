@@ -28,22 +28,22 @@ public class BoatFacade {
         return instance;
     }
 
-    public void g (){
-        EntityManager em = emf.createEntityManager();
-        OwnerDTO dto = new OwnerDTO(1,1);
-        Owner owner;
-        Boat boat;
-        owner = em.find(Owner.class, dto.getOwnerid());
-        boat = em.find(Boat.class, dto.getBoatid());
-
-        List<Boat> boatlist = owner.getBoats();
-        boatlist.add(boat);
-        owner.setBoats(boatlist);
-
-        em.persist(owner);
-
-
-    }
+//    public void g (){
+//        EntityManager em = emf.createEntityManager();
+//        OwnerDTO dto = new OwnerDTO(1,1);
+//        Owner owner;
+//        Boat boat;
+//        owner = em.find(Owner.class, dto.getOwnerid());
+//        boat = em.find(Boat.class, dto.getBoatid());
+//
+//        List<Boat> boatlist = owner.getBoats();
+//        boatlist.add(boat);
+//        owner.setBoats(boatlist);
+//
+//        em.persist(owner);
+//
+//
+//    }
 
 //    public List<BoatDTO> returnAllBoats(){
 //        EntityManager em = emf.createEntityManager();
