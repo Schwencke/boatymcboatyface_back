@@ -1,9 +1,12 @@
 package entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Table(name = "boat")
@@ -99,4 +102,5 @@ public class Boat {
     public void setHabour(Habour habour) {
         this.habour = habour;
     }
+
 }

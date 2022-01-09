@@ -1,7 +1,11 @@
 package entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Table(name = "habour")
 @Entity
@@ -31,6 +35,7 @@ public class Habour {
         this.address = address;
         this.capacity = capacity;
     }
+
 
     public Integer getId() {
         return id;
@@ -71,4 +76,5 @@ public class Habour {
     public void setBoats(List<Boat> boats) {
         this.boats = boats;
     }
+
 }

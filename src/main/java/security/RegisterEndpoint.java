@@ -7,8 +7,8 @@ import com.google.gson.JsonParser;
 import com.nimbusds.jose.JOSEException;
 import entities.User;
 import errorhandling.API_Exception;
-import errorhandling.ExceptionDTO;
 import errorhandling.GenericExceptionMapper;
+import facades.BoatFacade;
 import facades.UserFacade;
 import security.errorhandling.AuthenticationException;
 import utils.EMF_Creator;
@@ -26,6 +26,7 @@ public class RegisterEndpoint {
 
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory();
     public static final UserFacade USER_FACADE = UserFacade.getUserFacade(EMF);
+    public static final BoatFacade BOAT_FACADE = BoatFacade.getBoatFacade(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     @GET
@@ -33,6 +34,12 @@ public class RegisterEndpoint {
     @Produces(MediaType.APPLICATION_JSON)
     public Response init() throws Exception {
         return Response.ok().entity(GSON.toJson(USER_FACADE.initDB())).build();
+    }
+
+    @GET
+    @Path("test")
+    public Response tester(){
+       return Response.ok().entity(GSON.toJson(BOAT_FACADE.returnAllHabours())).build();
     }
 
 

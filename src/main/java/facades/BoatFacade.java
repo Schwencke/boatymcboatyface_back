@@ -1,6 +1,10 @@
 package facades;
 
 import dtos.BoatDTO;
+import dtos.HabourDTO;
+import dtos.OwnerDTO;
+import entities.Boat;
+import entities.Owner;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -24,10 +28,35 @@ public class BoatFacade {
         return instance;
     }
 
-    public List<BoatDTO> returnAllBoats(){
+    public void g (){
         EntityManager em = emf.createEntityManager();
-        List<BoatDTO> list;
-        TypedQuery<BoatDTO> query = em.createQuery("select b from Boat b", BoatDTO.class);
+        OwnerDTO dto = new OwnerDTO(1,1);
+        Owner owner;
+        Boat boat;
+        owner = em.find(Owner.class, dto.getOwnerid());
+        boat = em.find(Boat.class, dto.getBoatid());
+
+        List<Boat> boatlist = owner.getBoats();
+        boatlist.add(boat);
+        owner.setBoats(boatlist);
+
+        em.persist(owner);
+
+
+    }
+
+//    public List<BoatDTO> returnAllBoats(){
+//        EntityManager em = emf.createEntityManager();
+//        List<BoatDTO> list;
+//        TypedQuery<BoatDTO> query = em.createQuery("select b from Boat b", BoatDTO.class);
+//        list = query.getResultList();
+//        return list;
+//    }
+
+    public List<HabourDTO> returnAllHabours(){
+        EntityManager em = emf.createEntityManager();
+        List<HabourDTO> list;
+        TypedQuery<HabourDTO> query = em.createQuery("select h.id, h.name, h.address, h.capacity from Habour h", HabourDTO.class);
         list = query.getResultList();
         return list;
     }

@@ -15,14 +15,11 @@ public class HabourDTO {
     private int capacity;
     private List<Integer> boats;
 
-    public HabourDTO(Integer id, String name, String address, int capacity, List<Boat> boats) {
+    public HabourDTO(Integer id, String name, String address, int capacity) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.capacity = capacity;
-        boats.forEach(boat -> {
-            this.boats.add(boat.getId());
-        });
     }
 
     public Integer getId() {
