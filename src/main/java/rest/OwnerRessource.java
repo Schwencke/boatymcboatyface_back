@@ -2,6 +2,7 @@ package rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import entities.Owner;
 import facades.OwnerFacade;
 import facades.UserFacade;
 import utils.EMF_Creator;
@@ -37,8 +38,8 @@ public class OwnerRessource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response newOwner(String owner){
-
-        return Response.ok().build();
+        return Response.ok().entity(FACADE.createNewOwner
+                (GSON.fromJson(owner, Owner.class))).build();
     }
 
     @PUT
@@ -46,14 +47,15 @@ public class OwnerRessource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response editOwner(String owner){
 
-        return Response.ok().build();
+        return Response.ok().entity(FACADE.editOwner
+                (GSON.fromJson(owner, Owner.class))).build();
     }
 
     @DELETE
+    @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteOwner(String owner){
-
+    public Response deleteOwner(@PathParam("id")Integer id){
+        FACADE.deleteOwner(id);
         return Response.ok().build();
     }
 }
